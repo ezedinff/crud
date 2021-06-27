@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from "@material-ui/core/Paper";
 import CustomButton from "../../buttons/CustomButton";
 import { User } from "app/pages/UserPage/slice/types";
+import { userSaga } from "app/pages/UserPage/slice/saga";
 
 const cellTitles = ["ID", "First", "Last", "Email", "Phone", "Location", "Hobby", "Actions"];
 type Action = (user: User, type: "edit" | "delete") => void;
@@ -25,12 +26,13 @@ const UserTable: React.FC<{users: User[], action: Action}> = ({users, action}) =
                         users.map((user, index) => {
                             return (
                                 <TableRow key={index}>
-                                    {
-                                        Object.entries(user).map((k) => 
-                                        (
-                                        <TableCell>{k[1]}</TableCell>
-                                        ))                                                           
-                                    }
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{user.firstName}</TableCell>
+                                    <TableCell>{user.lastName}</TableCell>
+                                    <TableCell>{user.email}</TableCell>
+                                    <TableCell>{user.phoneNumber}</TableCell>
+                                    <TableCell>{user.location}</TableCell>
+                                    <TableCell>{user.hobby}</TableCell>
                                     <TableCell>
                                         <CustomButton onClick={() => action(user, "edit")} variant="contained" buttonType="edit" size="small">Edit</CustomButton>
                                             &nbsp;&nbsp;

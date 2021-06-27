@@ -1,5 +1,6 @@
+import { Method } from 'axios';
 export interface ApiRequestConfig {
   url: string;
-  method: "POST" | "GET" | "PUT" | "DELETE",
-  body: any;
+  method: Method,
+  data?: object;
 }
